@@ -1,0 +1,176 @@
+<!--doctype
+html
+  head
+    title Adobe Auth Example
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+      h1 Adobe Auth App
+    .button-group
+      button(onclick="location.href='/login'") Log In with Adobe
+      button(onclick="location.href='/profile'") Get Profile
+     
+    .canvas
+      p #{response}-->
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Adobe Style Login
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet")
+    style.
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-image: url('https://1000logos.net/wp-content/uploads/2021/04/Adobe-logo.png');
+        background-repeat: no-repeat;
+        background-position: top left;
+        background-size: 120px;
+        background-blend-mode: soft-light;
+        padding-left: 80px;
+        padding-top: 60px;
+      }
+
+      .background-blur {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: url('https://1000logos.net/wp-content/uploads/2021/04/Adobe-logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        filter: blur(20px);
+        z-index: 0;
+        opacity: 0.3;
+      }
+
+      .card-stack {
+      display: flex;
+      flex-direction: row; /* horizontal layout */
+      gap: 24px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      z-index: 1;
+      }
+
+      .login-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        padding: 40px;
+        width: 360px;
+        height: 250px;
+        backdrop-filter: saturate(180%) blur(8px);
+      }
+
+      .login-card h2 {
+        text-align: center;
+        color: #202020;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+
+      .login-card input {
+        width: 100%;
+        padding: 14px;
+        margin: 12px 0;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fafafa;
+        font-size: 14px;
+        outline: none;
+        transition: border 0.3s ease;
+      }
+
+      .login-card input:focus {
+        border-color: #1473e6;
+      }
+
+      .login-card button {
+        width: 100%;
+        padding: 14px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 8px;
+        background-color: #1473e6;
+        color: white;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .login-card button:hover {
+        background-color: #0d66d0;
+      }
+
+      .login-footer {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 13px;
+        color: #555;
+      }
+
+      .login-footer a {
+        color: #1473e6;
+        text-decoration: none;
+      }
+
+      .login-footer a:hover {
+        text-decoration: underline;
+      }
+
+      .canvas {
+        margin-top: 10px;
+        padding: 10px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #333;
+      }
+
+      button:disabled {
+        background-color: #ccc !important;
+        cursor: not-allowed;
+      }
+
+  body
+    .background-blur
+    .card-stack
+      .login-card
+        h2 Sign in to Adobe
+        button(onclick="location.href='/login'") Log-in
+        .login-footer
+          p Don't have an account?
+            a(href="https://account.adobe.com") Create one
+      .login-card
+        h2 Response from webhook
+        .canvas
+          p(id="webhook-response") #{response}
+      .login-card
+        h2 Operations
+        .button-group(style="display: flex; gap: 10px;")
+          button(id="create-template-btn", onclick="location.href='/createTemplate'") Create Template
+          button(id="create-variation-btn", onclick="location.href='/createVariation'") Create Variation
+
+
+
