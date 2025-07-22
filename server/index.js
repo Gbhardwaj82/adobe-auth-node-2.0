@@ -114,7 +114,7 @@ app.get('/profile', function(req, res){
 	}
 })
 
-/* Set up a HTTS server with the signed certification */
+/* Set up a HTTS server with the signed certification   */
 var httpsServer = https.createServer({
 	key: fs.readFileSync(path.join(__dirname, 'key.pem')),
 	cert: fs.readFileSync(path.join(__dirname, 'cert.pem'))
