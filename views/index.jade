@@ -172,5 +172,24 @@ html(lang="en")
           button(id="create-template-btn", onclick="location.href='/createTemplate'") Create Template
           button(id="create-variation-btn", onclick="location.href='/createVariation'") Create Variation
 
+script.
+  document.addEventListener('DOMContentLoaded', function () {
+    const responseText = document.getElementById('webhook-response')?.textContent?.trim();
+    const createTemplateBtn = document.getElementById('create-template-btn');
+    const createVariationBtn = document.getElementById('create-variation-btn');
 
+    const isAccepted = responseText === 'Accepted';
+
+    // Enable or disable buttons based on the response
+    createTemplateBtn.disabled = !isAccepted;
+    createVariationBtn.disabled = !isAccepted;
+
+    // Optional: visually indicate disabled state
+    if (!isAccepted) {
+      [createTemplateBtn, createVariationBtn].forEach(btn => {
+        btn.style.backgroundColor = '#ccc';
+        btn.style.cursor = 'not-allowed';
+      });
+    }
+  });
 
